@@ -1,10 +1,11 @@
 package com.example.backend.domain.chat.file;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class FileInfo {
     private String fileUrl;   // S3 등 저장소 주소
     private String fileName;  // 파일 원본 이름

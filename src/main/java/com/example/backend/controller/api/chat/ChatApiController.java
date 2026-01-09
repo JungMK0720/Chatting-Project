@@ -1,6 +1,7 @@
-package com.example.backend.controller;
+package com.example.backend.controller.api.chat;
 
 import com.example.backend.domain.chat.ChatMessage;
+import com.example.backend.dto.response.ChatMessageResponse;
 import com.example.backend.repository.ChatMessageRepository;
 import com.example.backend.service.ChatService;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +21,10 @@ public class ChatApiController {
 
     // 특정 채팅방의 과거 메시지 목록 조회
     @GetMapping("/room/{roomId}")
-    public List<ChatMessage> getHistory(@PathVariable String roomId) {
+    public List<ChatMessageResponse> getHistory(@PathVariable String roomId) {
+        // 도메인(ChatMessage)이 아닌 DTO(ChatMessageResponse)를 반환해야 합니다.
         return chatService.getChatHistory(roomId);
     }
-
     // [Isolate Test] MongoDB 저장 기능만 단독으로 테스트
     @PostMapping("/test-save")
     public String testSave(@RequestBody ChatMessage message) {
