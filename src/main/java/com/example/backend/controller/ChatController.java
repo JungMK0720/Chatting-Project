@@ -1,9 +1,8 @@
 package com.example.backend.controller;
 
-import com.example.backend.domain.chat.ChatLog;
-import com.example.backend.domain.chat.ChatLogRepository;
+import com.example.backend.domain.chat.ChatMessage;
+import com.example.backend.repository.ChatMessageRepository;
 import com.example.backend.domain.constant.MessageType;
-import com.example.backend.dto.ChatMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -18,7 +17,7 @@ public class ChatController {
     private final SimpMessageSendingOperations messagingTemplate;
 
     // @Messenger Message forever Save [STEP 3]
-    private final ChatLogRepository chatLogRepository;
+    private final ChatMessageRepository chatMessageRepository;
 
     /*
     [Step4]
@@ -32,21 +31,21 @@ public class ChatController {
 
     // 모든 메시지는 이 통로를 통해 방 번호(roomId)별로 구분되어 전달됩니다.
     @MessageMapping("/chat/message")
-    public void message(ChatMessage message) {
+    public void message(com.example.backend.dto.ChatMessage message) {
         System.out.println("메시지 수신 성공: " + message.getContent()); // 로그 추가
         if (MessageType.JOIN.equals(message.getType())) {
             message.setContent(message.getSenderNickname() + "님이 입장하셨습니다.");
         }
 
         // 1. MongoDB에 대화 내용 저장
-        ChatLog log = ChatLog.builder()
+        ChatMessage log = ChatMessage.builder()
                 .roomId(message.getRoomId())
                 .senderId(message.getSenderId())
                 .senderNickname(message.getSenderNickname())
                 .content(message.getContent())
                 .type(message.getType())
                 .build();
-        chatLogRepository.save(log);
+        chatMessageRepository.save(log);
 
         // 2. 실시간 메시지 전달
         // 목적지: /topic/room/{roomId}
@@ -78,7 +77,7 @@ public class ChatController {
 */
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
-    public ChatMessage addUser(ChatMessage chatMessage) {
+    public com.example.backend.dto.ChatMessage addUser(com.example.backend.dto.ChatMessage chatMessage) {
         // 유저 입장 로직 (세션 관리 등) 추가 가능
         chatMessage.setContent(chatMessage.getSenderNickname() + "님이 입장하셨습니다.");
         return chatMessage;

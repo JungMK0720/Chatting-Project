@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
-import com.example.backend.domain.chat.ChatLog;
+import com.example.backend.domain.chat.ChatMessage;
+import com.example.backend.repository.ChatMessageRepository;
 import com.example.backend.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,27 @@ import java.util.List;
 public class ChatApiController {
 
     private final ChatService chatService;
+    private final ChatMessageRepository chatMessageRepository;
 
     // 특정 채팅방의 과거 메시지 목록 조회
     @GetMapping("/room/{roomId}")
-    public List<ChatLog> getHistory(@PathVariable String roomId) {
+    public List<ChatMessage> getHistory(@PathVariable String roomId) {
         return chatService.getChatHistory(roomId);
+    }
+
+    // [Isolate Test] MongoDB 저장 기능만 단독으로 테스트
+    @PostMapping("/test-save")
+    public String testSave(@RequestBody ChatMessage message) {
+        ChatMessage log = ChatMessage.builder()
+                .roomId(message.getRoomId())
+                .senderId(message.getSenderId())
+                .senderNickname(message.getSenderNickname())
+                .content(message.getContent())
+                .type(message.getType())
+                .build();
+
+        chatMessageRepository.save(log); // MongoDB에 직접 저장 시도
+        return "저장 성공! MongoDB를 확인하세요.";
     }
 }
 

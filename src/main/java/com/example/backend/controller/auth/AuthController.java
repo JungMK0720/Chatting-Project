@@ -1,4 +1,4 @@
-package com.example.backend.controller;
+package com.example.backend.controller.auth;
 
 import com.example.backend.dto.AuthRequest;
 import com.example.backend.global.security.JwtTokenProvider;

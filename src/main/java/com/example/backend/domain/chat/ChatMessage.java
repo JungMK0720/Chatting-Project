@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @Document(collection = "chat_logs") // MongoDB의 컬렉션(테이블 역할) 이름
-public class ChatLog {
+public class ChatMessage {
 
     @Id
     private String id; // MongoDB는 기본적으로 String 타입의 ObjectId를 사용합니다.
@@ -26,7 +26,7 @@ public class ChatLog {
     private LocalDateTime createdAt; // 저장 시점의 정확한 서버 시간
 
     @Builder
-    public ChatLog(String roomId, String senderId, String senderNickname, String content, MessageType type) {
+    public ChatMessage(String roomId, String senderId, String senderNickname, String content, MessageType type) {
         this.roomId = roomId;
         this.senderId = senderId;
         this.senderNickname = senderNickname;
