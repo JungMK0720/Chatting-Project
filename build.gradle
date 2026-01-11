@@ -29,8 +29,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security' // for jwt
+
+    // ================== Security Configuration start ==================
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
+    // 1. JJWT API: 컴파일 시점에 필요한 인터페이스들
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    // 2. JJWT Implementation: 실제 로직이 들어있는 구현체 (런타임에만 필요)
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    // 3. JJWT Jackson: JSON 파싱을 위해 Jackson 라이브러리와 연결 (런타임에만 필요)
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+    testImplementation 'org.springframework.security:spring-security-test'
+    // ================== Security Configuration end ==================
+
+    runtimeOnly 'org.postgresql:postgresql' // db = postgresql < Docker
+
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-data-mongodb-test'
