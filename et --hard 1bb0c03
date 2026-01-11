@@ -1,0 +1,12 @@
+[33m4710184[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32m20260112_member_chat[m[33m, [m[1;32m20260110_member_chat[m[33m)[m Fix: remove sensitive data and apply gitignore
+[33m5c13dec[m second commit
+[33m1bb0c03[m[33m ([m[1;31morigin/20260110_member_chat[m[33m)[m first commit
+[33m668d977[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on (no branch): cf40032 first commit
+[33m9a3454d[m index on (no branch): cf40032 first commit
+[33mcf40032[m[33m ([m[1;31morigin/20260111_member_chat[m[33m, [m[1;32m20260111_member_chat[m[33m)[m first commit
+[33m9fc1376[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m Merge pull request #1 from JungMK0720/20260104_WebSocket
+[33m6f6bead[m[33m ([m[1;31morigin/20260104_WebSocket[m[33m)[m [20260109] Temporary Commit.
+[33ma25a950[m [20260108] Basic Configuration and Test success.
+[33m6204aaf[m [20260107] All UnTracked Files are added.
+[33m87184c7[m [20260107] WebSocket STOMP Temp Version. Current Version exists WebSocketMessageConfig class and WebSocketBrokerConfig class
+[33m45ea336[m [20260104] Initial Commit. For Spring boot Configuration

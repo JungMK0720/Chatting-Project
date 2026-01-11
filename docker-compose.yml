@@ -1,20 +1,20 @@
-version: '3.8'
-services:
-  db:
-    image: postgres:15
-    container_name: messenger-db-new  # 이름 중복 방지
-    environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: messenger_db
-    ports:
-      - "5434:5432"  # 밖에서는 5434로 접속, 안에서는 5432로 동작
-    volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-  mongodb: # MongoDB (새로 추가)
-    image: mongo:latest
-    container_name: messenger-mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./mongo_data:/data/db
+#version: '3.8'
+#services:
+#  db:
+#    image: postgres:15
+#    container_name: messenger-db-new  # 이름 중복 방지
+#    environment:
+#      POSTGRES_USER: myuser
+#      POSTGRES_PASSWORD: mypassword
+#      POSTGRES_DB: messenger_db
+#    ports:
+#      - "5434:5432"  # 밖에서는 5434로 접속, 안에서는 5432로 동작
+#    volumes:
+#      - ./postgres_data:/var/lib/postgresql/data
+#  mongodb: # MongoDB (새로 추가)
+#    image: mongo:latest
+#    container_name: messenger-mongo
+#    ports:
+#      - "27017:27017"
+#    volumes:
+#      - ./mongo_data:/data/db
