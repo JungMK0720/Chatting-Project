@@ -1,0 +1,8 @@
+package com.example.backend.user.dto;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+public record FindIdRequest(
+        @NotBlank @Email String email
+) {}
