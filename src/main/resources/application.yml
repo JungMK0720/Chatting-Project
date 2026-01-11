@@ -1,0 +1,15 @@
+spring:
+  # 1. PostgreSQL(RDBMS) ??
+  datasource:
+    url: jdbc:postgresql://localhost:5434/messenger_db
+    username: myuser
+    password: mypassword
+    driver-class-name: org.postgresql.Driver
+
+  # 2. MongoDB(NoSQL) ?? (??? ??? ?? ??? ???)
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mongodb:
+    uri: mongodb://localhost:27017/messenger_chat
