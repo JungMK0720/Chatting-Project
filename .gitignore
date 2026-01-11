@@ -39,3 +39,6 @@ out/
 ### Docker DB Volumes (DO NOT COMMIT) ###
 mongo_data/
 postgres_data/
+
+# 설정 파일 및 민감 정보 제외
+src/main/resources/application.properties
