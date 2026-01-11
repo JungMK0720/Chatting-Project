@@ -25,6 +25,19 @@ public class JwtEx {
                 .compact();
     }
 
+
+    public String generateAccessToken(String userId) {
+        return Jwts.builder()
+                .header()
+                .add("typ", "jwt")
+                .add("alg", "HS256")
+                .and()
+                .subject(userId)
+                .issuedAt(new Date())
+                .signWith(secretKey(key))
+                .compact();
+    }
+
     public String getUserIdFromToken(String token) {
         return Jwts.parser()
                 .verifyWith(secretKey(key))

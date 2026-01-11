@@ -38,10 +38,10 @@ public interface ChatMessageRepository extends JpaRepository<ChatMessage, Long> 
      */
     @Query("SELECT COUNT(cm) FROM ChatMessage cm " +
             "WHERE cm.chatRoom.chatRoomId = :roomId " +
-            "AND cm.sender.userUuid != :userUuid " + // 내가 보낸 메시지는 제외
+            "AND cm.sender.id != :userUuid " + // 내가 보낸 메시지는 제외
             "AND NOT EXISTS (" +
             "    SELECT 1 FROM MessageReadStatus mrs " +
-            "    WHERE mrs.chatMessage = cm AND mrs.user.userUuid = :userUuid" +
+            "    WHERE mrs.chatMessage = cm AND mrs.user.id = :userUuid" +
             ")")
     int countUnreadMessagesForUserInRoom(
             @Param("roomId") Long roomId,
